@@ -1,0 +1,33 @@
+def get_data():
+  with open("word.in", "r") as f:
+    s=f.read()
+  return (s)
+s=get_data()  
+
+
+s=s.splitlines()
+
+(K, N), data=s[0].split(), s[1:]
+K, N = int(K), int(N) 
+
+data=[ [int(e) for e in x.split()] for x in s[1:] ] 
+
+tuples = []
+for e in range(N):
+    for i in range(e+1, N):
+        tuples.append((data[0][e],data[0][i]))
+count=0
+sol_list = []
+for e in tuples:
+    valid = True
+    for i in range(K-1):
+        if data[i+1].index(e[0])>data[i+1].index(e[1]):
+            valid = False
+            break
+    if valid == True:
+        count+=1
+        sol_list.append(e)
+def write_answer(ANSWER, fn="gymnastics.out"):
+  with open(fn, "w") as f:
+    f.write(ANSWER) 
+write_answer(str(count))
