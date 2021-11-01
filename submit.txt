@@ -1,0 +1,25 @@
+tl = []
+for i in range(int(input())):
+    tl.append(input().split(' '))
+l = []
+for e in tl:
+    l.append([e[0],e[3],e[4],e[-1]])
+l
+zodiacs = {'Ox':0, 'Tiger':1, 'Rabbit':2, 'Dragon':3, 'Snake':4, 'Horse':5, 'Goat':6, 'Monkey':7, 'Rooster':8, 'Dog':9, 'Pig':10, 'Rat':11}
+cows = {'Bessie':0}
+for e in l:
+    t = cows[e[3]]
+    if e[1]=='previous':
+        sat = False
+        while not sat:
+            t-=1
+            if t%12==zodiacs[e[2]]:
+                sat = True
+    if e[1]=='next':
+        sat = False
+        while not sat:
+            t+=1
+            if t%12==zodiacs[e[2]]:
+                sat = True
+    cows[e[0]] = t
+print(abs(cows["Elsie"]))
